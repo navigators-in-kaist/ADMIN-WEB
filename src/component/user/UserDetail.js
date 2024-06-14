@@ -42,7 +42,7 @@ const UserDetail = () => {
         if (newObj['userEmail'] === "") {
             newObj['userEmail'] = null;
         }
-        if (newObj['provenUser']) {
+        if (newObj['isProvenUser']) {
             delete newObj['userEmail'];
         }
         return newObj;
@@ -52,6 +52,7 @@ const UserDetail = () => {
         await setIsLoading(true);
         const sCallback = async (res) => {
             let data = res.data.item;
+            console.log(data);
             setRequestBody(_.cloneDeep(data));
             setFixedRequestBody(_.cloneDeep(data));
             setIsValidMap(_.cloneDeep(isValidMapInit));
@@ -191,7 +192,7 @@ const UserDetail = () => {
                         type="email"
                         value={requestBody['userEmail']}
                         onChange={(e) => handleEmailInput(e.target.value)}
-                        readOnly={requestBody['provenUser']}
+                        readOnly={requestBody['isProvenUser']}
                     />
                 </Col>
             </Row>

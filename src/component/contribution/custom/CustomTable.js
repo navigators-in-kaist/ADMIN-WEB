@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTable } from 'react-table';
-import './TableStyle.css';
+import '../../../common/table/TableStyle.css';
 import { useNavigate } from 'react-router-dom';
 
-const Table = ({ columns, data, baseUrl }) => {
+const CustomTable = ({ columns, data, onClickRow }) => {
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
     const navigate = useNavigate();
@@ -24,11 +24,10 @@ const Table = ({ columns, data, baseUrl }) => {
                 prepareRow(row);
                 return (
                     <tr {...row.getRowProps()}
-                        onClick={() => {
-                            if (row.original.id !== null) {
-                                navigate(`${baseUrl}/${row.original.id}`);
-                            }
+                        onClick={async () => {
+                            await onClickRow(row.original.id);
                         }}
+                        key={row.original.id}
                     >
                         {row.cells.map((cell, index) => (
                             <td id='tdComponent' key={index} {...cell.getCellProps()}>
@@ -45,4 +44,4 @@ const Table = ({ columns, data, baseUrl }) => {
     );
 };
 
-export default Table;
+export default CustomTable;

@@ -33,12 +33,20 @@ const isEmptyStr = (value) => {
     return ((typeof value === "undefined") || (value == null) || value === "");
 };
 
+const findObjInList = async (id, list) => {
+    for (let i=0 ; i < list.length ; i++) {
+        if (list[i]['id'] === id) {
+            return list[i];
+        }
+    }
+}
 
 const Utils = {
     replaceObjKey,
     checkIsAllTrue,
     updateHelper,
-    isEmptyStr
+    isEmptyStr,
+    findObjInList
 };
 
 export default Utils;

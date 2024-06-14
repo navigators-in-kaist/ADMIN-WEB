@@ -144,7 +144,11 @@ const AddBuilding = ({isOpen, setIsOpen, onRefresh}) => {
                         />
                     </Col>
                 </Row>
-                <Row>
+                <Row
+                    style={{
+                        marginTop: '5px'
+                    }}
+                >
                     <Col>
                         <Form.Label>Name</Form.Label>
                         <Form.Control
